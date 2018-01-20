@@ -1,1 +1,30 @@
-<%= @artist.name %>
+<h1><%= @artist.name %>
+<%= link_to "delete", artist_path(@artist.id), method: :delete,
+    data: { confirm: "Are you sure you want to delete #{@artist.name}?" } %>
+</h1>
+
+<ul>
+<% @artist.songs.each do |song| %>
+<li>
+  <%= song.title %>
+    <%= link_to "delete song", artist_song_path(@artist.id , song.id ),
+    method: :delete,
+    data: { confirm: "Are you sure you want to delete it?" } %>
+  </li>
+<% end %>
+</ul>
+<hr>
+
+<hr>
+  <%= form_for [@artist, @artist.songs.new] do |f| %>
+  <div>
+    <label>Name : </label>
+    <%= f.text_field 'title', placeholder: "insert song" %>
+  </div>
+
+  <div>
+    <%= f.submit "create new song" %>
+
+  </div>
+  <% end %>
+<hr>
