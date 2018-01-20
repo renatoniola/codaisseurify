@@ -1,4 +1,10 @@
 <h1><%= @artist.name %>
+
+<%#= form_for @artist, html: { multipart: true } do |p| %>
+<%#= p.file_field "images[]", type: :file, multiple: true %>
+<%#= p.submit "save picture" %>
+<%# end %>
+
 <%= link_to "delete", artist_path(@artist.id), method: :delete,
     data: { confirm: "Are you sure you want to delete #{@artist.name}?" } %>
 </h1>
@@ -16,13 +22,14 @@
 <hr>
 
  <%= notice %>
-  
+
 
 <hr>
   <%= form_for [@artist, @artist.songs.new] do |f| %>
   <div>
     <label>Name : </label>
     <%= f.text_field 'title', placeholder: "insert song" %>
+
   </div>
 
   <div>

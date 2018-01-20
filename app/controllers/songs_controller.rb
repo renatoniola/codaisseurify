@@ -8,6 +8,7 @@ class SongsController < ApplicationController
     @new_song = @artist.songs.new( song_params )
 
     if @new_song.save
+
       redirect_to artist_path(params[:artist_id]), notice: "song successfully created"
     else
       redirect_to artist_path(params[:artist_id]), notice: "there was a problem saving the song"
