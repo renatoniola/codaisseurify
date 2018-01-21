@@ -13,7 +13,10 @@ Artist.destroy_all
 motor = Artist.create!( name: 'motorpsycho' ,
    bio: 'motorpsycho is simply dummy text of the printing and typesetting industry.
    Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,' )
-
+motor_photo = Photo.create!(remote_image_url:
+ "http://res.cloudinary.com/renatos/image/upload/v1516551224/motorpsycho-38117_ybmcoe.jpg" ,
+  artist: motor
+)
 
 
 afghan = Artist.create!( name: 'afghan whigs' ,
@@ -28,6 +31,11 @@ afghan_photo = Photo.create!(remote_image_url:
 dire = Artist.create!( name: 'dire straits' ,
     bio: 'dire straits is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,' )
+
+dire_photo = Photo.create!(remote_image_url:
+  "http://res.cloudinary.com/renatos/image/upload/v1516551224/dire_cikuzd.jpg" ,
+   artist: dire
+)
 
 biber = Artist.create!( name: 'justin biber',
     bio: 'justin biber is simply dummy text of the printing and typesetting industry.

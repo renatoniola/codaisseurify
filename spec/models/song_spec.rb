@@ -12,4 +12,17 @@ RSpec.describe Song, type: :model do
       end
   end
 
+
+  describe "association with artist" do
+    let(:artist) { create :artist }
+
+    it "belongs to a artist" do
+      #room = user.rooms.build(home_type: "Shared")
+      song = artist.songs.build(title: "song test" )
+      expect(song.artist).to eq(artist)
+    end
+
+
+  end
+
 end

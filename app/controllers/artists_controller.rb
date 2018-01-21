@@ -10,12 +10,12 @@ class ArtistsController < ApplicationController
   def show
 
     @songs = @artist.songs
-
+    @photos = @artist.photos
   end
 
   def new
     @artist_item = Artist.new
-    @photos = @artist.photos
+
   end
 
   def create
