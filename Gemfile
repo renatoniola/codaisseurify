@@ -4,6 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+ruby '2.4.1'
 # carrierwave , gem for image uploading
 gem 'carrierwave'
 
@@ -47,7 +48,9 @@ end
 group :test do
   gem 'capybara'
 end
-
+group :production do
+  gem 'rails_12factor'
+end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
