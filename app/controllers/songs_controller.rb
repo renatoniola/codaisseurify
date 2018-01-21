@@ -31,5 +31,5 @@ class SongsController < ApplicationController
      .permit(
        :title
      )
- end
+  end
 end
