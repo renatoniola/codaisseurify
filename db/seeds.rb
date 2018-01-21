@@ -7,15 +7,23 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Song.destroy_all
+Photo.destroy_all
 Artist.destroy_all
 
 motor = Artist.create!( name: 'motorpsycho' ,
    bio: 'motorpsycho is simply dummy text of the printing and typesetting industry.
    Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,' )
 
+
+
 afghan = Artist.create!( name: 'afghan whigs' ,
     bio: 'afghan whigs is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,')
+
+afghan_photo = Photo.create!(remote_image_url:
+  "http://res.cloudinary.com/renatos/image/upload/v1516548311/afghan_as5qrh.jpg" ,
+   artist: afghan
+)
 
 dire = Artist.create!( name: 'dire straits' ,
     bio: 'dire straits is simply dummy text of the printing and typesetting industry.

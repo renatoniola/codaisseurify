@@ -13,14 +13,22 @@ class ArtistsController < ApplicationController
 
   end
 
+  def new
+    @artist_item = Artist.new
+    @photos = @artist.photos
+  end
+
   def create
 
-    @artists = Artist.all
+    #@artists = Artist.all
 
-    @new_artist = @artists.new( artist_params )
+    @artist_item = Artist.new( artist_params )
 
-    if @new_artist.save
+    if @artist_item.save
 
+      image_params.each do |image|
+        @artist_item.photos.create(image: image)
+      end
       redirect_to artists_path,  notice: "artist successfully created"
     else
       redirect_to artists_path , notice: "there was a problem saving the artist"
@@ -35,12 +43,17 @@ class ArtistsController < ApplicationController
 
   private
 
+  def image_params
+    params[:images].present? ? params.require(:images) : []
+  end
+
   def set_artist
     @artist= Artist.find(params[:id])
   end
 
   def artist_params
    params
+     .require(:artist)
      .permit(
        :name
      )
