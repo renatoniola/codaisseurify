@@ -8,6 +8,11 @@ ruby '2.4.1'
 # carrierwave , gem for image uploading
 gem 'carrierwave'
 
+gem 'bootstrap-sass'
+
+
+gem 'jquery-rails'
+
 gem 'cloudinary'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
