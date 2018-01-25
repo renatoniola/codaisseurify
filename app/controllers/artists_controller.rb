@@ -3,7 +3,40 @@ class ArtistsController < ApplicationController
 
   def index
 
-    @artists = Artist.all
+
+    case params['order_by']
+    when 'name_asc'
+      @order_by_name = 'name_desc'
+      @order_by_date = 'date_asc'
+      @artists = Artist.order_by_name_asc
+      @order_text_by_name = 'order names desc'
+      @order_text_by_date = 'order dates desc'
+    when 'name_desc'
+      @order_by_name = 'name_asc'
+      @order_by_date = 'date_asc'
+      @artists = Artist.order_by_name_desc
+      @order_text_by_name = 'order names asc'
+      @order_text_by_date = 'order dates desc'
+    when 'date_asc'
+      @order_by_date = 'date_desc'
+      @order_by_name = 'name_asc'
+      @artists = Artist.order_by_date_asc
+      @order_text_by_date = 'order dates desc'
+      @order_text_by_name = 'order names asc'
+    when 'date_desc'
+      @order_by_date = 'date_asc'
+      @order_by_name = 'name_asc'
+      @artists = Artist.order_by_date_desc
+      @order_text_by_date = 'order dates asc'
+      @order_text_by_name = 'order names asc'
+    else
+      @order_by_name = 'name_desc'
+      @order_by_date = 'date_asc'
+      @order_text_by_name = 'order names desc'
+      @order_text_by_date = 'order dates asc'
+      @artists = Artist.order_by_name_asc
+    end
+
 
   end
 

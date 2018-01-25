@@ -5,7 +5,7 @@
 <%= f.text_area :bio, placeholder: "insert bio" %>
 
 Upload Photo
-    <%= f.file_field "images[]", type: :file, multiple: true %>
+<%= file_field_tag "images[]", type: :file, multiple: true %>
 
 <%= f.submit "create new artist" %>
 
@@ -13,10 +13,9 @@ Upload Photo
 <hr>
 
 <% if @photos %>
-  <% @photos.each do |photo| %>
+<% @photos.each do |photo| %>
 
-        <%= image_tag photo.image %>
+  <%= image_tag photo.image %>
 
-
-  <% end %>
+<% end %>
 <% end %>
