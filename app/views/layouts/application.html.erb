@@ -9,9 +9,8 @@
   </head>
 
   <body>
-    <%= link_to 'ARTISTS' , artists_path%> |
-    <%= link_to @order_text_by_name , artists_path(order_by: @order_by_name) %> | 
-    <%= link_to @order_text_by_date , artists_path(order_by: @order_by_date) %>
+    <%= link_to 'ARTISTS' , artists_path%> 
+
     <hr>
     <%= yield %>
 

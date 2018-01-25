@@ -1,3 +1,5 @@
+<%= link_to @order_text_by_name , artists_path(order_by: @order_by_name) %> |
+<%= link_to @order_text_by_date , artists_path(order_by: @order_by_date) %>
 <ul>
 <% @artists.each do |artist| %>
 <li>
