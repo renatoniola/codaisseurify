@@ -1,8 +1,7 @@
-function submitSong(event) {
-  event.preventDefault();
+function submitSong(e) {
+  e.preventDefault();
   const formData = $("#new_song").serializeArray();
-  console.log(formData);
-  console.log(formData[2].value);
+
 
   $.ajax(
     {
@@ -25,18 +24,26 @@ function submitSong(event) {
   })
 }
 
-function deleteSong(event) {
-  event.preventDefault();
+function deleteSong(e) {
+   e.preventDefault();
 
+   const artistId = e.currentTarget.attributes[0].value;
+   const songId = e.currentTarget.attributes[1].value;
+  $.ajax(
+    {
+      type : 'DELETE',
+      url : `/api/artists/${artistId}/songs/${songId}`,
+      contentType: "application/json",
+      dataType: "json"
+    }
+  ).done( response => {
+     console.log(response);
+  })
 }
 
 $(document).ready(function() {
 
   $("#new_song").bind('submit', submitSong);
 
-  $("#delete-song").click(function(e){
-    con
-    e.preventDefault();
-    console.log('yes delted');
-  });
+  $(".delete-song").click(deleteSong);
 });
