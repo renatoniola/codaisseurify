@@ -16,11 +16,11 @@
 
 
 
-<ul>
+<ul id="song-list">
 <% @artist.songs.each do |song| %>
 <li>
   <%= song.title %>
-    <%= link_to "delete song", artist_song_path(@artist.id , song.id ),
+    <%= link_to "delete song", artist_song_path(@artist.id , song.id ), id: "delete-song",
     method: :delete,
     data: { confirm: "Are you sure you want to delete it?" } %>
   </li>
@@ -32,9 +32,10 @@
 
 
 <hr>
-  <%= form_for [@artist, @artist.songs.new] do |f| %>
+  <%= form_for [@artist, @artist.songs.new], id: 'new_song' do |f| %>
   <div>
     <label>Name : </label>
+    <%= f.hidden_field :artist_id ,{ value: @artist.id } %>
     <%= f.text_field :title, placeholder: "insert song" %>
 
   </div>
