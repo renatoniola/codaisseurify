@@ -23,7 +23,7 @@
     <!-- <%= link_to "delete song", artist_song_path(@artist.id , song.id ), id: "delete-song",
     method: :delete,
     data: { confirm: "Are you sure you want to delete it?" } %> -->
-    <button data-artist-id="<%= @artist.id  %>" data-song-id="<%= song.id  %>" type="button" class="delete-song btn btn-primary">Primary</button>
+    <button data-artist-id="<%= @artist.id  %>" data-song-id="<%= song.id  %>" type="button" class="delete-song btn btn-primary btn-xs">Delete song</button>
   </li>
 <% end %>
 </ul>
@@ -44,7 +44,7 @@
   </div>
 
   <div>
-    <%= f.submit "create new song" %>
+    <%= f.submit "create new song" , id: "submit" %>
 
   </div>
   <% end %>

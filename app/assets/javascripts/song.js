@@ -1,7 +1,7 @@
 function submitSong(e) {
   e.preventDefault();
   const formData = $("#new_song").serializeArray();
-
+  //$('h1').append('yes ! it gets cklick');
 
   $.ajax(
     {
@@ -14,9 +14,12 @@ function submitSong(e) {
       dataType: "json"
     }
   ).done(function(data){
-      console.log(data);
-      let songLi = $('<li></li>');
-      songLi.append(data.title);
+
+      let deleteBtn = $(`<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs">delete song</button>`)
+
+      let songLi = $(`<li>${data.song.title}</li>`);
+      songLi.append(deleteBtn);
+      $(deleteBtn).click(deleteSong);
       $('#song-list').append(songLi);
   })
   .fail(function(err){
@@ -38,6 +41,7 @@ function deleteSong(e) {
     }
   ).done( response => {
      console.log(response);
+     console.log($(this).parent().remove());
   })
 }
 

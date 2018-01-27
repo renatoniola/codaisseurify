@@ -1,20 +1,38 @@
 require 'rails_helper'
 
 feature 'song tests', js: true do
-  scenario 'add a new song' do
-    # Point your browser towards the todo path
-    visit api_artist_song_path(4)
 
-    # Enter description in the text field
-    fill_in 'song[title]', with: 'newsonginserted'
-    #find("input[id$='title']").set "Vostro 2017"
-    #fill_in 'song[artist_id]', with: '1'
-    #first('input#id.class', visible: false).set("1")
+  let(:artist1) { create :artist, name: 'metallica' }
 
-    # Press enter (to submit the form)
-    #page.execute_script('$("#new_song").bind("submit", submitSong)')
 
-    # Expect the new task to be displayed in the list of tasks
-    expect(page).to have_content('new song inserted')
+  let!(:song1) { create :song, title: 'song test1', artist: artist1 }
+  let!(:song2) { create :song, title: 'song test2', artist: artist1 }
+  let!(:song3) { create :song, title: 'song test3', artist: artist1 }
+
+  it ' should have metallica in page' do
+
+    visit artist_path(artist1)
+
+
+    expect(page).to have_content('metallica')
+
+
   end
+
+  it ' saves the song' do
+
+    visit artist_path(artist1)
+
+    fill_in 'song_title', with: "newsonginserted"
+
+    click_on('submit')
+    
+
+    expect(page).to have_content('newsonginserted')
+
+
+  end
+
+
+
 end
