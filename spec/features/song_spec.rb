@@ -23,12 +23,12 @@ feature 'song tests', js: true do
 
     visit artist_path(artist1)
 
-    fill_in 'song_title', with: "newsonginserted"
+    fill_in 'song_title', with: "new song inserted"
 
     click_on('submit')
-    
 
-    expect(page).to have_content('newsonginserted')
+
+    expect(page).to have_content('new song inserted')
 
 
   end
