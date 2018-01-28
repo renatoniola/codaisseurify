@@ -15,7 +15,7 @@ function submitSong(e) {
     }
   ).done(function(data){
 
-      let deleteBtn = `<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs">delete song</button>`;
+      let deleteBtn = `<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs">Delete song</button>`;
 
       let songLi = $(`<div class="row"><div class="col-xs-7">${data.song.title}</div><div class="col-xs-5">${deleteBtn}</div></div>`);
 
@@ -46,9 +46,28 @@ function deleteSong(e) {
   })
 }
 
+function deleteAllSongs(e) {
+   e.preventDefault();
+
+   const artistId = e.currentTarget.attributes[0].value;
+
+  $.ajax(
+    {
+      type : 'DELETE',
+      url : `/api/artists/${artistId}/songs/delete_all`,
+      contentType: "application/json",
+      dataType: "json"
+    }
+  ).done( response => {
+     console.log(response);
+     $('#song-list').empty();
+  })
+}
+
 $(document).ready(function() {
 
   $("#new_song").bind('submit', submitSong);
 
   $(".delete-song").click(deleteSong);
+  $("#delete_all_songs").click(deleteAllSongs);
 });

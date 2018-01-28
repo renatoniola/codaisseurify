@@ -23,12 +23,22 @@ class Api::SongsController < ApplicationController
   end
   def destroy
 
-    song = Song.find(params[:id])
-    song.destroy
+    if params[:id] != 'delete_all'
+      
+      song = Song.find(params[:id])
+      song.destroy
 
-    render status: 200, json: {
-      message: "song successfully deleted"
-    }.to_json
+      render status: 200, json: {
+        message: "song successfully deleted"
+      }.to_json
+    else
+      @artist = Artist.find(params[:artist_id])
+      @artist.songs.destroy_all
+
+      render status: 200, json: {
+        message: "all songs form artist successfully deleted"
+      }.to_json
+    end
 
   end
   def song_params
