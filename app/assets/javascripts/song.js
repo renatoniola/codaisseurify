@@ -1,6 +1,6 @@
 function submitSong(e) {
   e.preventDefault();
-  const formData = $("#new_song").serializeArray();
+  let formData = $("#new_song").serializeArray();
   //$('h1').append('yes ! it gets cklick');
 
   $.ajax(
@@ -31,8 +31,8 @@ function submitSong(e) {
 function deleteSong(e) {
    e.preventDefault();
 
-   const artistId = e.currentTarget.attributes[0].value;
-   const songId = e.currentTarget.attributes[1].value;
+   let artistId = e.currentTarget.attributes[0].value;
+   let songId = e.currentTarget.attributes[1].value;
   $.ajax(
     {
       type : 'DELETE',
@@ -49,7 +49,7 @@ function deleteSong(e) {
 function deleteAllSongs(e) {
    e.preventDefault();
 
-   const artistId = e.currentTarget.attributes[0].value;
+   let artistId = e.currentTarget.attributes[0].value;
 
   $.ajax(
     {
