@@ -9,11 +9,9 @@
   </head>
 
   <body>
-    <div class="container">
-      <%= link_to 'ARTISTS' , artists_path%>
+    <%= render 'shared/navbar' %>
 
-      <hr>
       <%= yield %>
-    </div>
+  
   </body>
 </html>

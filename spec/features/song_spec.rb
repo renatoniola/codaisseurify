@@ -19,7 +19,7 @@ feature 'song tests', js: true do
 
   end
 
-  it ' saves the song' do
+  it ' should saves the song' do
 
     visit artist_path(artist1)
 
@@ -28,7 +28,21 @@ feature 'song tests', js: true do
     click_on('submit')
 
 
-    expect(page).to have_content('new song inserted')
+    expect(page).to have_text('new song inserted')
+
+
+  end
+
+  it ' should delete the song' do
+
+    visit artist_path(artist1)
+
+    fill_in 'song_title', with: "new song inserted"
+
+    click_on('submit')
+
+
+    expect(page).to have_text('new song inserted')
 
 
   end

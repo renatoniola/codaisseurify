@@ -1,0 +1,33 @@
+.navbar{
+  width : 100%;
+  background-color: #ff9800;
+}
+.navbar-block{
+  /* unvisited link */
+
+  list-style: none;
+  line-height: 50px;
+
+  li{
+    float:left;
+    margin-left : 20px;
+  }
+    a:link {
+        color: white;
+    }
+
+    /* visited link */
+    a:visited {
+        color: white;
+    }
+
+    /* mouse over link */
+    a:hover {
+        color: white;
+    }
+
+    /* selected link */
+    a:active {
+        color: white;
+    }
+}

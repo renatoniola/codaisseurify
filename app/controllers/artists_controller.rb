@@ -1,10 +1,12 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :destroy]
-  
+
+   IMAGE_NOT_FOUND = 'http://res.cloudinary.com/renatos/image/upload/v1517140901/imagenotfound_bytgea.jpg'
 
   def index
 
-
+    @image_not_found = IMAGE_NOT_FOUND
+    
     case params['order_by']
     when 'name_asc'
       @order_by_name = 'name_desc'
@@ -42,7 +44,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-
+    @image_not_found = IMAGE_NOT_FOUND
     @songs = @artist.songs
     @photos = @artist.photos
   end

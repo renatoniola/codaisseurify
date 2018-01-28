@@ -1,50 +1,57 @@
-<h1><%= @artist.name %>
+<header>
+  <h1><%= @artist.name %></h1>
+</header>
 
-<%#= form_for @artist, html: { multipart: true } do |p| %>
-<%#= p.file_field "images[]", type: :file, multiple: true %>
-<%#= p.submit "save picture" %>
-<%# end %>
+<div class="container artist-show">
 
-<%= link_to "delete", artist_path(@artist.id), method: :delete,
-    data: { confirm: "Are you sure you want to delete #{@artist.name}?" } %>
-</h1>
+  <div class="col-xs-5">
+    <div class="row">
+      <% @artist.photos.each do |photo| %>
+        <%= image_tag ( photo.image ? photo.image.thumbnail : @image_not_found)  %>
+      <% end %>
+    </div>
 
+    <div class="row">
+      <%= link_to "delete artist", artist_path(@artist.id), method: :delete, data: { confirm: "Are you sure you want to delete #{@artist.name}?" } %>
+    </div>
 
-<% @artist.photos.each do |photo| %>
-  <%= image_tag photo.image.thumbnail %>
-<% end %>
+    <div class="row">
+      <%= form_for [@artist, @artist.songs.new], id: 'new_song' do |f| %>
+      <div>
+        <label>Name :
+        </label>
 
+        <%= f.hidden_field :artist_id ,{ value: @artist.id }%>
+        <%= f.text_field :title, { placeholder: "insert song"} %>
 
+      </div>
 
-<ul id="song-list">
-<% @artist.songs.each do |song| %>
-<li>
-  <%= song.title %>
-    <!-- <%= link_to "delete song", artist_song_path(@artist.id , song.id ), id: "delete-song",
-    method: :delete,
-    data: { confirm: "Are you sure you want to delete it?" } %> -->
-    <button data-artist-id="<%= @artist.id  %>" data-song-id="<%= song.id  %>" type="button" class="delete-song btn btn-primary btn-xs">Delete song</button>
-  </li>
-<% end %>
-</ul>
-<hr>
+      <div>
+        <%= f.button "create new song" , id: "submit" , class: "btn btn-primary btn-xs" %>
 
- <%= notice %>
+      </div>
 
-
-<hr>
-  <%= form_for [@artist, @artist.songs.new], id: 'new_song' do |f| %>
-  <div>
-    <label>Name : </label>
-
-    <%= f.hidden_field :artist_id ,{ value: @artist.id }%>
-    <%= f.text_field :title, { placeholder: "insert song"} %>
-
-
+    <% end %>
   </div>
+</div>
 
-  <div>
-    <%= f.submit "create new song" , id: "submit" %>
+<div id="song-list" class="col-xs-7">
 
-  </div>
+  <% @artist.songs.each do |song| %>
+
+    <div class="row">
+      <div class="col-xs-7">
+        <%= song.title %>
+      </div>
+      <div class="col-xs-5">
+        <button data-artist-id="<%= @artist.id  %>" data-song-id="<%= song.id  %>" type="button" class="delete-song btn btn-primary btn-xs">Delete song</button>
+      </div>
+    </div>
+
   <% end %>
+
+</div>
+
+<%= notice %>
+
+</div>

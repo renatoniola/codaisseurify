@@ -1,13 +1,27 @@
+<header>
+   <h1>music box</h1>
+</header>
+<div class="container">
+<div>
 <%= link_to @order_text_by_name , artists_path(order_by: @order_by_name) %> |
 <%= link_to @order_text_by_date , artists_path(order_by: @order_by_date) %>
-<ul>
-<% @artists.each do |artist| %>
-<li>
-  <%= link_to artist.name , artist_path(artist) %> ( <%= artist.created_at %> )
-</li>
-<% end %>
+</div>
 
-</ul>
-<p>
-<%= link_to 'new artist' , new_artist_path %>
-</p>
+<div>
+
+</div>
+<% @artists.each do |artist| %>
+
+
+  <article class="artist-article col-xs-12 col-sm-4">
+        <h3><%= artist.name %></h3>
+        <div class="thumbnail" style="background: url(<%= artist.photos.first ? artist.photos.first.image : @image_not_found %>) no-repeat center center ; background-size : cover"></div>
+
+
+        <p><%= truncate(artist.bio, :length => 100, :omission => '...') %></p>
+
+
+        <%= link_to artist.name , artist_path(artist), class: "btn btn-primary btn-xs" %>
+      </article>
+<% end %>
+</div>

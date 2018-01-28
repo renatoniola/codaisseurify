@@ -15,12 +15,13 @@ function submitSong(e) {
     }
   ).done(function(data){
 
-      let deleteBtn = $(`<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs">delete song</button>`)
+      let deleteBtn = `<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs">delete song</button>`;
 
-      let songLi = $(`<li>${data.song.title}</li>`);
-      songLi.append(deleteBtn);
-      $(deleteBtn).click(deleteSong);
+      let songLi = $(`<div class="row"><div class="col-xs-7">${data.song.title}</div><div class="col-xs-5">${deleteBtn}</div></div>`);
+
       $('#song-list').append(songLi);
+      $(".delete-song").click(deleteSong);
+      $("#song_title").val("");
   })
   .fail(function(err){
      console.log(err);
@@ -41,7 +42,7 @@ function deleteSong(e) {
     }
   ).done( response => {
      console.log(response);
-     console.log($(this).parent().remove());
+     console.log($(this).parent().parent().remove());
   })
 }
 
