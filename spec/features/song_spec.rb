@@ -33,16 +33,28 @@ feature 'song tests', js: true do
 
   end
 
-  it ' should delete the song' do
+  it ' should delete all songs' do
 
     visit artist_path(artist1)
 
-    fill_in 'song_title', with: "new song inserted"
+    click_on('delete_all_songs')
 
-    click_on('submit')
+    expect(page).to have_no_text(['song test1','song test2','song test3'])
 
 
-    expect(page).to have_text('new song inserted')
+  end
+
+  it ' should delete one song' do
+
+    visit artist_path(artist1)
+
+    within "#song-list .row:nth-child(1)  .col-xs-5" do
+
+      click_on(".delete-song" , visible: false)
+    end
+    #first('#song-list  row  button').click
+
+    expect(page).to have_no_text('song test1')
 
 
   end
