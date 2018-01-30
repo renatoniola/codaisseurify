@@ -16,22 +16,15 @@
     </div>
 
     <div class="row">
-      <%= form_for [@artist, @artist.songs.new], id: 'new_song' do |f| %>
-      <div>
-        <label>Name :
-        </label>
 
-        <%= f.hidden_field :artist_id ,{ value: @artist.id }%>
-        <%= f.text_field :title, { placeholder: "insert song"} %>
+      <form id="new_song">
+        <label>Title :</label>
+        <input id="hidden"  type="hidden" value="<%= @artist.id %>" />
+        <input id="title" name="title" placeholder="Enter title" type="text" />
+        <input type="submit" class="btn btn-primary btn-xs" value="goo">
+      </form>
 
-      </div>
 
-      <div>
-        <%= f.button "create new song" , id: "submit" , class: "btn btn-primary btn-xs" %>
-
-      </div>
-
-    <% end %>
   </div>
 
 </div>

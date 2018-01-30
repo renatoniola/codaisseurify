@@ -1,15 +1,16 @@
 function submitSong(e) {
-  e.preventDefault();
+   e.preventDefault();
 
-  let formData = $("#new_song").serializeArray();
-  //$('h1').append('yes ! it gets cklick');
+   let title = $('#title').val();
+   let artistId = $('#hidden').val();
+   console.log('tit : '+title + " / "+ artistId);
 
   $.ajax(
     {
       type : 'POST',
-      url : `/api/artists/${formData[2].value}/songs`,
+      url : `/api/artists/${artistId}/songs`,
       data : JSON.stringify({
-          title : formData[3].value
+          title : title
       }),
       contentType: "application/json",
       dataType: "json"
@@ -22,7 +23,7 @@ function submitSong(e) {
 
       $('#song-list').append(songLi);
       $(".delete-song").click(deleteSong);
-      $("#song_title").val("");
+      $("#title").val("");
   })
   .fail(function(err){
      console.log(err);

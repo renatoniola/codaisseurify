@@ -45,7 +45,8 @@ class ArtistsController < ApplicationController
 
   def show
     @image_not_found = IMAGE_NOT_FOUND
-    @songs = @artist.songs
+    #@songs = @artist.songs.new
+    #@songs = @artist.songs
     @image = @artist.photos.first ? @artist.photos.first.image.thumbnail : @image_not_found
   end
 
@@ -91,7 +92,7 @@ class ArtistsController < ApplicationController
    params
      .require(:artist)
      .permit(
-       :name
+       :name , songs_attributes: [ :title ]
      )
  end
 
