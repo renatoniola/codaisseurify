@@ -11,7 +11,7 @@ class Api::SongsController < ApplicationController
 
        if @new_song.save
          render status: 201, json: {
-           message: "Room successfully created",
+           message: "song successfully created",
            song: @new_song
          }.to_json
        else
@@ -21,10 +21,11 @@ class Api::SongsController < ApplicationController
        end
 
   end
+
   def destroy
 
     if params[:id] != 'delete_all'
-      
+
       song = Song.find(params[:id])
       song.destroy
 

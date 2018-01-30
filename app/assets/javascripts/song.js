@@ -1,5 +1,6 @@
 function submitSong(e) {
   e.preventDefault();
+
   let formData = $("#new_song").serializeArray();
   //$('h1').append('yes ! it gets cklick');
 
@@ -15,7 +16,7 @@ function submitSong(e) {
     }
   ).done(function(data){
 
-      let deleteBtn = `<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs">Delete song</button>`;
+      let deleteBtn = `<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs"><span class="oi oi-trash"></span></button>`;
 
       let songLi = $(`<div class="row"><div class="col-xs-7">${data.song.title}</div><div class="col-xs-5">${deleteBtn}</div></div>`);
 

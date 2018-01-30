@@ -6,9 +6,9 @@
 
   <div class="col-xs-5">
     <div class="row">
-      <% @artist.photos.each do |photo| %>
-        <%= image_tag ( photo.image ? photo.image.thumbnail : @image_not_found)  %>
-      <% end %>
+
+        <%= image_tag @image  %>
+
     </div>
 
     <div class="row">
@@ -33,12 +33,12 @@
 
     <% end %>
   </div>
-  <div class="row">
-    <button data-artist-id="<%= @artist.id  %>" id="delete_all_songs" class="btn btn-primary btn-xs">delete all songs</button>
-  </div>
-</div>
 
-<div id="song-list" class="col-xs-7">
+</div>
+<div class="col-xs-7">
+  <button data-artist-id="<%= @artist.id  %>" id="delete_all_songs" class="btn btn-primary btn-xs">delete all songs</button>
+
+<div id="song-list" >
 
   <% @artist.songs.each do |song| %>
 
@@ -47,14 +47,14 @@
         <%= song.title %>
       </div>
       <div class="col-xs-5">
-        <button data-artist-id="<%= @artist.id  %>" data-song-id="<%= song.id  %>" type="button" class="delete-song btn btn-primary btn-xs">Delete song</button>
+        <button data-artist-id="<%= @artist.id  %>" data-song-id="<%= song.id  %>" type="button" class="delete-song btn btn-primary btn-xs"><span class="oi oi-trash"></span></button>
       </div>
     </div>
 
   <% end %>
 
 </div>
-
+</div>
 <%= notice %>
 
 </div>
