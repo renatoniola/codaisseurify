@@ -11,6 +11,6 @@ Rails.application.routes.draw do
       resources :songs , only: [:destroy, :create]
     end
   end
-
+  
   root to: 'artists#index'
 end

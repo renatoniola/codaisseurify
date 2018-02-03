@@ -1,27 +1,29 @@
 function submitSong(e) {
-  e.preventDefault();
-  let formData = $("#new_song").serializeArray();
-  //$('h1').append('yes ! it gets cklick');
+   e.preventDefault();
+
+   let title = $('#title').val();
+   let artistId = $('#hidden').val();
+   console.log('tit : '+title + " / "+ artistId);
 
   $.ajax(
     {
       type : 'POST',
-      url : `/api/artists/${formData[2].value}/songs`,
+      url : `/api/artists/${artistId}/songs`,
       data : JSON.stringify({
-          title : formData[3].value
+          title : title
       }),
       contentType: "application/json",
       dataType: "json"
     }
   ).done(function(data){
 
-      let deleteBtn = `<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs">Delete song</button>`;
+      let deleteBtn = `<button data-artist-id='${data.song.artist_id}' data-song-id='${data.song.id}' placeholder="insert song" class="delete-song btn btn-primary btn-xs"><span class="oi oi-trash"></span></button>`;
 
       let songLi = $(`<div class="row"><div class="col-xs-7">${data.song.title}</div><div class="col-xs-5">${deleteBtn}</div></div>`);
 
       $('#song-list').append(songLi);
       $(".delete-song").click(deleteSong);
-      $("#song_title").val("");
+      $("#title").val("");
   })
   .fail(function(err){
      console.log(err);

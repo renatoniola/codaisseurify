@@ -6,7 +6,7 @@ class ArtistsController < ApplicationController
   def index
 
     @image_not_found = IMAGE_NOT_FOUND
-    
+
     case params['order_by']
     when 'name_asc'
       @order_by_name = 'name_desc'
@@ -45,8 +45,9 @@ class ArtistsController < ApplicationController
 
   def show
     @image_not_found = IMAGE_NOT_FOUND
-    @songs = @artist.songs
-    @photos = @artist.photos
+    #@songs = @artist.songs.new
+    #@songs = @artist.songs
+    @image = @artist.photos.first ? @artist.photos.first.image.thumbnail : @image_not_found
   end
 
   def new
@@ -91,7 +92,7 @@ class ArtistsController < ApplicationController
    params
      .require(:artist)
      .permit(
-       :name
+       :name , songs_attributes: [ :title ]
      )
  end
 
