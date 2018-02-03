@@ -16,12 +16,12 @@ feature 'song tests', js: true do
   it ' should saves the song' do
     visit artist_path(artist1)
 
-    fill_in 'song_title', with: 'new song inserted'
+    fill_in 'title', with: 'new song inserted'
 
-    click_on('submit')
+    click_on('save song')
 
     # expect(page).to have_text('new song inserted')
-    expect(page).to have_field('Title', with: 'new song inserted')
+    expect(page).to have_content('new song inserted')
   end
 
   it ' should delete all songs' do
@@ -35,10 +35,9 @@ feature 'song tests', js: true do
   it ' should delete one song' do
     visit artist_path(artist1)
 
-    within '#song-list .row:nth-child(1)  .col-xs-5' do
-      click_on('.delete-song', visible: false)
-    end
-    # first('#song-list  row  button').click
+    sleep(5)
+    page.find('#song-list > div:first-child > .col-xs-5 > button').click
+    sleep(5)
 
     expect(page).to have_no_text('song test1')
   end
